@@ -25,10 +25,9 @@ jobs:
       python_version: ${{ steps.python_info.outputs.python_version }}
     steps:
       - id: python_info
-        shell: bash
         run: |
           PY_P="$(which python3 2>/dev/null || which python 2>/dev/null)"
-          if [[ -n ${PY_P} ]]; then 
+          if [ -n ${PY_P} ]; then 
             echo "::set-output name=python_path::${PY_P}" 
             PY_VER=$("${PY_P}" --version 2>&1)
             echo "::set-output name=python_version::${PY_VER}" 
