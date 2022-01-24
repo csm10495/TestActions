@@ -26,6 +26,7 @@ jobs:
     steps:
       - id: python_info
         run: |
+          set +e 
           if ! which sh; then
             if yum --version; then
               yum install which -y
