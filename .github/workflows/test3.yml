@@ -24,14 +24,14 @@ jobs:
       python_path: "${{ steps.get_python_info.python_info.python_path }}"
       python_version: "${{ steps.get_python_info.python_info.python_version }}"
     steps:
-      -id: python_info
-       run: |
-         PY_P="$(which python3 2>/dev/nul || which python 2>/dev/null)"
-         echo "::set-output name=python_path::${PY_P}" 
-         if [[ -n ${PY} ]]; then 
-           PY_VER=$("${PY_P}" --version 2>&1)
-           echo "::set-output name=python_version::${PY_VER}" 
-         fi
+      - id: python_info
+        run: |
+          PY_P="$(which python3 2>/dev/nul || which python 2>/dev/null)"
+          echo "::set-output name=python_path::${PY_P}" 
+          if [[ -n ${PY} ]]; then 
+            PY_VER=$("${PY_P}" --version 2>&1)
+            echo "::set-output name=python_version::${PY_VER}" 
+          fi
       
   print_python_info:
     runs-on: ubuntu-latest
@@ -39,8 +39,8 @@ jobs:
     if: ${{ needs.get_python_info.outputs.python_path }} != ""
     steps:
     - run: |
-      echo "Python was found here: ${{ needs.get_python_info.outputs.python_path }}"
-      echo "${{ needs.get_python_info.outputs.python_version }}
+        echo "Python was found here: ${{ needs.get_python_info.outputs.python_path }}"
+        echo "${{ needs.get_python_info.outputs.python_version }}"
      
 
       
