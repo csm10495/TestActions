@@ -16,3 +16,5 @@ jobs:
     container:  "${{ github.event.inputs.docker_image }}"
     steps:
       - run: "sh -c \"${{ github.event.inputs.cmd }}\""
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
