@@ -1,11 +1,10 @@
-name: "What Version Of Python is In There?"
-
-on: 
+name: What Version Of Python is In There?
+'on':
   workflow_dispatch:
     inputs:
       docker_image:
         type: choice
-        description: "System Type to Use"
+        description: System Type to Use
         options:
           - centos
           - ubuntu
@@ -15,14 +14,13 @@ on:
           - amazonlinux
           - clearlinux
           - python
-       
 jobs:
   get_python_info:
     runs-on: ubuntu-latest
-    container: "${{ github.event.inputs.docker_image }}"
+    container: '${{ github.event.inputs.docker_image }}'
     outputs:
-      python_path: ${{ steps.python_info.outputs.python_path }}
-      python_version: ${{ steps.python_info.outputs.python_version }}
+      python_path: '${{ steps.python_info.outputs.python_path }}'
+      python_version: '${{ steps.python_info.outputs.python_version }}'
     steps:
       - id: python_info
         run: |
@@ -39,23 +37,27 @@ jobs:
               exit 33
             fi
           fi
-          
+
           PY_P="$(which python3 2>/dev/null || which python 2>/dev/null)"
           if ! test -z ${PY_P}; then 
             echo "::set-output name=python_path::${PY_P}" 
             PY_VER=$("${PY_P}" --version 2>&1)
             echo "::set-output name=python_version::${PY_VER}" 
           fi
-      
+          
   print_python_info:
     runs-on: ubuntu-latest
     needs: get_python_info
-    if: ${{ needs.get_python_info.outputs.python_path != '' }}
+    if: "${{ needs.get_python_info.outputs.python_path != '' }}"
     steps:
-    - run: |
-        echo "Python was found here: ${{ needs.get_python_info.outputs.python_path }}"
-        echo "${{ needs.get_python_info.outputs.python_version }}"
-     
-
-      
-    
+      - run: |
+          echo "Python was found here: ${{ needs.get_python_info.outputs.python_path }}"
+          echo "${{ needs.get_python_info.outputs.python_version }}"
+          
+  complain_about_python_2:
+    runs-on: ubuntu-latest
+    needs: get_python_info
+    if: "${{ contains(needs.get_python_info.outputs.python_version, 'Python 2' }}"
+    steps:
+      - run: |
+          echo "Why are you still using Python 2?"
