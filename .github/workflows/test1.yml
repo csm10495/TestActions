@@ -22,7 +22,7 @@ jobs:
       ip: ${{ steps.get_ip.outputs.ip }} 
     steps:
     - id: get_ip
-    - run: |
+      run: |
         ip=$(curl https://ipinfo.io/ip)
         echo "Shhh the ip is ${ip}"
         echo "::set-output name=ip::${ip}" 
