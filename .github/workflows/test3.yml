@@ -33,6 +33,7 @@ jobs:
             PY_VER=$("${PY_P}" --version 2>&1)
             echo "::set-output name=python_version::${PY_VER}" 
           fi
+          true # force good exit
       
   print_python_info:
     runs-on: ubuntu-latest
