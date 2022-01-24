@@ -20,7 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "::set-output name=ip::$(curl https://ipinfo.io/ip)" 
+        ip=$(curl https://ipinfo.io/ip)
+        echo "Shhh the ip is ${ip}"
+        echo "::set-output name=ip::${ip}" 
         
   print_this_ip:
     runs-on: ubuntu-latest
