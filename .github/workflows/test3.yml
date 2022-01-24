@@ -19,10 +19,10 @@ on:
 jobs:
   get_python_info:
     runs-on: ubuntu-latest
-    container:  "${{ github.event.inputs.docker_image }}"
+    container: "${{ github.event.inputs.docker_image }}"
     outputs:
-      python_path: ${{ steps.get_python_info.python_info.python_path }}
-      python_version: ${{ steps.get_python_info.python_info.python_version }}
+      python_path: ${{ steps.python_info.outputs.python_path }}
+      python_version: ${{ steps.python_info.outputs.python_version }}
     steps:
       - id: python_info
         shell: bash
