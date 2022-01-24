@@ -28,7 +28,7 @@ jobs:
         run: |
           PY_P="$(which python3 2>/dev/nul || which python 2>/dev/null)"
           echo "::set-output name=python_path::${PY_P}" 
-          if [[ -n ${PY} ]]; then 
+          if [[ -n ${PY_P} ]]; then 
             PY_VER=$("${PY_P}" --version 2>&1)
             echo "::set-output name=python_version::${PY_VER}" 
           fi
