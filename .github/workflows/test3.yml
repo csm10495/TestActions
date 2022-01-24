@@ -41,7 +41,7 @@ jobs:
           fi
           
           PY_P="$(which python3 2>/dev/null || which python 2>/dev/null)"
-          if [ -n ${PY_P} ]; then 
+          if ! test -z ${PY_P}; then 
             echo "::set-output name=python_path::${PY_P}" 
             PY_VER=$("${PY_P}" --version 2>&1)
             echo "::set-output name=python_version::${PY_VER}" 
