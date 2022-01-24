@@ -25,6 +25,7 @@ jobs:
       python_version: "${{ steps.get_python_info.python_info.python_version }}"
     steps:
       - id: python_info
+        shell: bash
         run: |
           PY_P="$(which python3 2>/dev/nul || which python 2>/dev/null)"
           echo "::set-output name=python_path::${PY_P}" 
