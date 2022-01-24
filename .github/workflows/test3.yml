@@ -26,7 +26,10 @@ jobs:
     steps:
       - id: python_info
         run: |
-          yum install which -y || apt-get install which -y || dnf install which -y || true
+          if [ ! which 2>/dev/null ]; then
+            yum install which -y || apt-get install which -y || dnf install which -y
+          fi
+          
           PY_P="$(which python3 2>/dev/null || which python 2>/dev/null)"
           if [ -n ${PY_P} ]; then 
             echo "::set-output name=python_path::${PY_P}" 
