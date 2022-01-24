@@ -29,9 +29,9 @@ jobs:
           if ! which sh; then
             if yum --version; then
               yum install which -y
-            else if dnf --version; then
+            elif dnf --version; then
               dnf install which -y
-            else if apt-get --version; then
+            elif apt-get --version; then
               apt-get install which -y
             else
               echo "Don't know how to install which"
