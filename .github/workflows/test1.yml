@@ -1,0 +1,17 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Test1
+
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "User's name"     
+        required: true
+        
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Hello ${{ github.event.inputs.name }}!"
