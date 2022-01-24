@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: "Hello World and Get My IP"
+name: "1 - Hello World and Get My IP"
 
 on: 
   workflow_dispatch:
