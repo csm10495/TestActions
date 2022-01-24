@@ -10,8 +10,21 @@ on:
         required: true
         
 jobs:
-  printInputs:
+  say_hi:
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "Hello ${{ github.event.inputs.name }}!"
+        
+  get_this_ip:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "::set-output name=ip::$(curl https://ipinfo.io/ip)" 
+        
+  print_this_ip:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "The ip was: ${{ needs.get_this_ip.outputs.ip }}"
+      
