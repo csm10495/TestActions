@@ -1,1 +1,18 @@
 name: "Run In Docker Container"
+
+on: 
+  workflow_dispatch:
+    inputs:
+      docker_image:
+        description: "Docker Image To Run The Command In"     
+        required: true
+      cmd:
+        description: "Command to run in the Docker container"
+        required: true
+        
+jobs:
+  do_it:
+    runs-on: ubuntu-latest
+    container:  "${{ github.event.inputs.docker_image }}"
+    steps:
+      - run: "sh -c \"${{ github.event.inputs.cmd }}\""
