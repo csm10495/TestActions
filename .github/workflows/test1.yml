@@ -1,12 +1,20 @@
 name: "1 - Hello World and Get My IP"
 
+# I wish we didn't need to duplicate the inputs...
+# Related:
+# https://github.com/actions/runner/issues/1182
+# https://github.community/t/inconsistent-inputs-context-for-workflow-dispatch-and-workflow-call/207835
+# https://github.community/t/workflow-dispatch-and-workflow-call-at-the-same-time/225375
+
 on: 
+  # Allow calling directly
   workflow_dispatch:
     inputs:
       name:
         description: "User's name"     
         required: true
         type: string
+  # Allow calling from another action
   workflow_call:
     inputs:
       name:
