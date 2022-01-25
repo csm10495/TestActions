@@ -1,0 +1,9 @@
+name: "4 - Triggering Another Action"
+
+        
+jobs:
+  call-workflow-passing-data:
+    uses: github.com/csm10495/TestActions/blob/master/.github/workflows/test1.yml
+    with:
+      name: "From Another Workflow"
+     
