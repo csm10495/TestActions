@@ -3,7 +3,7 @@ name: "4 - Triggering Another Action"
         
 jobs:
   call-workflow-passing-data:
-    uses: github.com/csm10495/TestActions/blob/master/.github/workflows/test1.yml@master
+    uses: csm10495/TestActions/.github/workflows/test1.yml@master
     with:
       name: "From Another Workflow"
      
