@@ -14,8 +14,6 @@ name: 3 - What Version Of Python is In There?
           - amazonlinux
           - clearlinux
           - python
-      test:
-        type: environment
 jobs:
   get_python_info:
     runs-on: ubuntu-latest
