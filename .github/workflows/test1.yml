@@ -6,6 +6,11 @@ on:
       name:
         description: "User's name"     
         required: true
+  workflow_call:
+    inputs:
+      name:
+        description: "User's name"     
+        required: true
         
 jobs:
   say_hi:
