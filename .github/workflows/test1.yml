@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Hello ${{ github.event.inputs.name }}!"
+        echo "Hello ${{ (github.event.inputs || inputs).name }}!"
         
   get_this_ip:
     runs-on: ubuntu-latest
